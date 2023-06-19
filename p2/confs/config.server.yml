@@ -1,0 +1,4 @@
+write-kubeconfig-mode: "644"
+token: "secret"
+node-ip: "192.168.56.110"
+#disable: "traefik"
