@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-one-index-html
+data:
+  index.html:
+    <html>
+    <body>
+    <h1>Welcome to APP 1!</h1>
+    </body>
+    </html>

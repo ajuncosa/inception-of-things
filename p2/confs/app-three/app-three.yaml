@@ -1,32 +1,39 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-one
+  name: app-three
   labels:
-    app: app-one
+    app: app-three
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app-one
+      app: app-three
   template:
     metadata:
       labels:
-        app: app-one
+        app: app-three
     spec:
       containers:
-        - name: app-one
+        - name: app-three
           image: nginx
           ports:
             - containerPort: 80
+          volumeMounts:
+            - name: nginx-index-file
+              mountPath: /usr/share/nginx/html/
+      volumes:
+        - name: nginx-index-file
+          configMap:
+            name: app-three-index-html
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: app-one
+  name: app-three
 spec:
   selector:
-    app: app-one
+    app: app-three
   ports:
     - protocol: TCP
       port: 80

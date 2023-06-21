@@ -19,6 +19,13 @@ spec:
           image: nginx
           ports:
             - containerPort: 80
+          volumeMounts:
+            - name: nginx-index-file
+              mountPath: /usr/share/nginx/html/
+      volumes:
+        - name: nginx-index-file
+          configMap:
+            name: app-two-index-html
 ---
 apiVersion: v1
 kind: Service
