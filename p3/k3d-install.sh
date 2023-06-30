@@ -24,6 +24,11 @@ sudo apt-get update
 sudo apt-get install -y kubectl
 
 # create cluster
-sudo k3d cluster create mycluster
-sudo kubectl apply -f dev-namespace.yaml
-sudo kubectl apply -f argo-namespace.yaml
+sudo k3d cluster create mycluster -p "80:80@loadbalancer"
+
+# configure kubernetes
+sudo kubectl apply -f iot-apavel/dev-namespace.yaml
+sudo kubectl apply -f iot-apavel/argo-namespace.yaml
+sudo kubectl apply -f iot-apavel/deployment.yaml
+sudo kubectl apply -f iot-apavel/service.yaml
+sudo kubectl apply -f iot-apavel/ingress.yaml
