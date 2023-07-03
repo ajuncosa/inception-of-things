@@ -24,7 +24,7 @@ sudo apt-get update
 sudo apt-get install -y kubectl
 
 # create cluster
-sudo k3d cluster create mycluster -p "80:80@loadbalancer"
+sudo k3d cluster create mycluster -p "80:80@loadbalancer" -p "443:443@loadbalancer" -p "8080:8080@loadbalancer"
 
 # configure kubernetes
 sudo kubectl apply -f iot-apavel/dev-namespace.yaml
