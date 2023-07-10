@@ -18,8 +18,11 @@ echo -e '\033[1;34mWaiting for argocd-server service to become available...\033[
 kubectl wait deployment/argocd-server -n argocd --for=condition=Available=true --timeout=300s
 
 # Change argocd admin user's password
-# TODO: meter la contraseña con un secret o un kustomization o algo
-kubectl -n argocd patch secret argocd-secret -p '{"stringData":  {"admin.password": "$2y$12$Kg4H0rLL/RVrWUVhj6ykeO3Ei/YqbGaqp.jAtzzUSJdYWT6LUh/n6", "admin.passwordMtime": "'$(date +%FT%T%Z)'"}}' #mysupersecretpassword
+kubectl -n argocd patch secret argocd-secret \
+	-p '{"stringData": {
+		"admin.password": "$2y$12$Kg4H0rLL/RVrWUVhj6ykeO3Ei/YqbGaqp.jAtzzUSJdYWT6LUh/n6",
+		"admin.passwordMtime": "'$(date +%FT%T%Z)'"
+	}}' #mysupersecretpassword
 
 # Create app
 kubectl apply -f ../confs/application.yaml
