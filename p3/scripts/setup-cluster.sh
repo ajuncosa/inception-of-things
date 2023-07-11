@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Create k3d cluster
-k3d cluster create mycluster -p "80:80@loadbalancer" -p "443:443@loadbalancer" -p "8888:30036@loadbalancer"
+k3d cluster create mycluster -p "80:80@loadbalancer" -p "443:443@loadbalancer" -p "8888:8888@loadbalancer"
 
 # Create namespaces
 kubectl apply -f ../confs/dev-namespace.yaml
